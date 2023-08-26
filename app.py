@@ -55,6 +55,10 @@ def math_operation(operation):
         return jsonify(error=expression), 400
 
 
+# Route to display the last 20 operations.
+@app.route('/history')
+def history():
+    return jsonify(history=HISTORY[-20:])
 
 if __name__ == '__main__':
     app.run(debug=True, port=3000)
