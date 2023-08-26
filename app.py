@@ -73,4 +73,5 @@ def math_operation(operation):
 def history():
     return jsonify(history=HISTORY[-20:])
 
-from api import app
+if __name__ == '__main__':
+    app.run(debug=True, port=3000)
