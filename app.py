@@ -3,6 +3,7 @@ import pickle
 
 app = Flask(__name__)
 
+
 try:
     with open('history.pkl', 'rb') as f:
         HISTORY = pickle.load(f)
@@ -30,9 +31,21 @@ def process_math(operations):
     except Exception as e:
         return str(e), None
 
+
 @app.route('/')
 def index():
-    return 'Welcome to the Math Server!'
+    html_content = """
+    <h2>Welcome to the Math Server!</h2>
+    <p>Here are some sample endpoints:</p>
+    <ul>
+        <li><a href="/5/plus/3">5 plus 3</a></li>
+        <li><a href="/3/minus/5">3 minus 5</a></li>
+        <li><a href="/3/minus/5/plus/8">3 minus 5 plus 8</a></li>
+        <li><a href="/3/into/5">3 multiplied by 5</a></li>
+        <li><a href="/history">View Operation History</a></li>
+    </ul>
+    """
+    return html_content
 
 
 @app.route('/<path:operation>')
